@@ -11,6 +11,10 @@ const Sidebar = ({ isAuthenticated }) => {
     navigate(isAuthenticated ? '/profile' : '/login');
   };
 
+  const handleHomeClick = () => {
+    navigate('/', { state: { resetCity: true } });
+  };
+
   const renderIcon = (IconComponent, onClickHandler) => (
     <div className="icon" onClick={onClickHandler}>
       <IconComponent />
@@ -21,7 +25,7 @@ const Sidebar = ({ isAuthenticated }) => {
     <div className="sidebar">
       {renderIcon(isAuthenticated ? FaUser : FaUserCircle, handleProfileClick)}
       <hr />
-      {renderIcon(FaHome, () => navigate('/'))}
+      {renderIcon(FaHome, handleHomeClick)}
       {isAuthenticated && renderIcon(FaStar, () => navigate('/favorites'))}
     </div>
   );

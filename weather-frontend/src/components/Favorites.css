@@ -1,48 +1,58 @@
-.success {
-  color: green;
-  margin-top: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-
+/* General container styling */
 .favorites-container {
-  display: flex; /* Changed from grid to flex */
-  flex-wrap: wrap; /* Ensures items wrap to the next line if they exceed the width */
-  gap: 20px; /* Space between items */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   padding: 20px;
-  justify-content: space-between; /* Adjusts spacing between items */
+  justify-content: center; /* Center items horizontally */
 }
 
+/* Heading styling */
+h1 {
+  text-align: center;
+  margin-top: 20px; /* Space above the heading */
+  margin-bottom: 20px; /* Space below the heading */
+  font-size: 2.5rem; /* Larger font size for better impact */
+  font-weight: bold;
+  color: #007bff; /* Blue color to represent clear skies */
+  font-family: 'Arial', sans-serif; /* Clean and modern font */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for better readability */
+}
+
+/* Styling for individual favorite items */
 .favorite-item {
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Light blue gradient for a fresh look */
+  border: 1px solid #ddd; /* Border for item separation */
+  border-radius: 10px;
   padding: 20px;
   position: relative;
   text-align: center;
-  flex: 1 1 calc(33.333% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
-  min-width: 300px; /* Minimum width to maintain layout */
-  max-width: 100%; /* Maximum width to avoid overflowing */
-  box-sizing: border-box; /* Ensure padding and border are included in width */
+  flex: 1 1 calc(33.333% - 40px); /* Responsive width with margin */
+  min-width: 250px; /* Adjusted minimum width */
+  max-width: calc(33.333% - 40px); /* Prevents items from exceeding their container */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
 }
 
+.favorite-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow effect */
+  background-color: #b2ebf2; /* Change background color on hover for better visual feedback */
+}
+
+/* Details section styling */
 .favorite-details {
   margin-bottom: 10px;
 }
 
 .weather-details {
-  text-align: left; /* Ensure weather details are left-aligned */
+  text-align: left; /* Align text to the left for readability */
   margin-top: 10px;
+  font-family: 'Verdana', sans-serif; /* Different font for details */
+  color: #333; /* Ensure text color is consistent */
 }
 
-/* .forecast {
-  margin-top: 10px;
-}
-
-.forecast-day {
-  margin-bottom: 10px; 
-}*/
-
+/* Delete icon styling */
 .delete-icon-wrapper {
   position: absolute;
   top: 10px;
@@ -50,32 +60,33 @@
 }
 
 .delete-icon {
-  color: #ff0000;
+  color: #ff5722; /* Orange color for a warning effect */
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .delete-icon:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  color: #d84315; /* Darker orange on hover */
 }
 
-/* Tooltip styles */
+/* Tooltip styling */
 .delete-icon-wrapper .delete-icon::after {
   content: attr(title);
   visibility: hidden;
   opacity: 0;
-  background-color: #555;
+  background-color: #333;
   color: #fff;
   text-align: center;
   border-radius: 5px;
-  padding: 5px 0;
+  padding: 5px 10px;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position above the icon */
+  bottom: 125%;
   left: 50%;
-  margin-left: -60px; /* Center the tooltip */
+  margin-left: -60px;
   width: 120px;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease;
 }
 
 .delete-icon-wrapper .delete-icon:hover::after {
@@ -83,6 +94,7 @@
   opacity: 1;
 }
 
+/* Pagination styling */
 .pagination {
   display: flex;
   justify-content: center;
@@ -97,9 +109,20 @@
   margin: 0 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .pagination-button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Success message styling */
+.success {
+  color: #4caf50; /* Green color for success */
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Verdana', sans-serif;
+  font-size: 1.2rem;
 }

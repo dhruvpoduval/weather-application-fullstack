@@ -26,3 +26,4 @@ const WeatherSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('weather', WeatherSchema);
+//user, city, fav

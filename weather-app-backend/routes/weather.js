@@ -16,23 +16,13 @@ router.get('/:city', async (req, res) => {
         console.log('API Response:', response.data);  // Log the full API response
 
         const currentWeather = response.data.current;
-        const forecastWeather = response.data.forecast.forecastday;
+        //const forecastWeather = response.data.forecast.forecastday;
 
         const weatherData = {
             city: response.data.location.name,
             temperature: currentWeather.temp_c,
             description: currentWeather.condition.text,
-            rainfall: currentWeather.precip_mm,
-            windSpeed: currentWeather.wind_kph,
-            windDirection: currentWeather.wind_dir,
-            forecast: forecastWeather.map(day => ({
-                date: day.date,
-                maxTemp: day.day.maxtemp_c,
-                minTemp: day.day.mintemp_c,
-                description: day.day.condition.text,
-                rainfall: day.day.totalprecip_mm,
-                windSpeed: day.day.maxwind_kph
-            }))
+            icon: currentWeather.condition.icon
         };
 
         //console.log('Weather Data:', weatherData);  // Log the processed weather data
@@ -65,7 +55,23 @@ router.post('/favorites', auth, async(req, res) => {
     }
 });
 
+router.get('/search/:query', async(req, res) => {
+    try{
+        const query = req.params.query;
+        const apiKey = process.env.WEATHER_API_KEY;
+        const response = await axios.get(`http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${query}`);
 
+        const suggestion = response.data.map(location => ({
+            city:location.name,
+            country:location.country
+        }));
+
+        res.json(suggestion);
+    }catch(err){
+        console.error('Error fetching city suggestions:', err.message);
+        res.status(500).send('Server error');
+    }
+});
 
 // Add this route to handle default city
 router.get('/defaultCity', async (req, res) => {
@@ -88,6 +94,31 @@ router.get('/defaultCity', async (req, res) => {
     }
 });
 
+
+//Here we add code for the search suggestions functionality
+
+// Add or update this route in weather.js
+router.get('/search/suggestions/:query', async (req, res) => {
+    try {
+        const query = req.params.query;
+        const apiKey = process.env.WEATHER_API_KEY;
+        const response = await axios.get(
+            `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${query}`
+        );
+
+        const suggestions = response.data.map(location => ({
+            id: `${location.name}-${location.country}`,
+            city: location.name,
+            country: location.country,
+            fullName: `${location.name}, ${location.country}`
+        }));
+
+        res.json(suggestions);
+    } catch (err) {
+        console.error('Error fetching city suggestions:', err);
+        res.status(500).json({ message: 'Error fetching suggestions' });
+    }
+});
 
 
 module.exports = router;

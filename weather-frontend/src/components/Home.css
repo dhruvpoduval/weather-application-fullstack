@@ -1,96 +1,240 @@
-/* Home.css */
+/* General container styling */
+/* Reset margins and padding for html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
 
+/* Fullscreen container styling */
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin: 20px 10px;
-  padding: 0;
-  margin-left: 52px;
-  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 60px; /* Add padding to prevent content from going under taskbar */
+  margin: 0;
+  background: radial-gradient(circle at center, #dedee5, #121212);
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #e0e0e0;
 }
 
+/* Taskbar styling */
 .taskbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
-  padding: 10px 20px; /* Increased padding for better spacing */
-  background-color: #004d99; /* Dark blue background for the taskbar */
-  color: white; /* White text color for contrast */
-  border-bottom: 1px solid #003366; /* Slightly darker blue border */
-  width: calc(100% - 60px); /* Full width minus sidebar width */
-  position: absolute;
+  width: calc(100% - 60px); /* Subtract sidebar width */
+  padding: 10px 20px;
+  background: #2a2a40;
+  color: #ffffff;
+  position: fixed;
   top: 0;
-  box-sizing: border-box; /* Include padding and border in element's total width */
+  left: 60px; /* Add left offset equal to sidebar width */
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
-
+/* Application heading styling */
 .app-heading {
-  font-size: 2em;
-  margin-left: 0;
+  font-size: 2.2em;
+  margin-left: 15px;
+  font-weight: bold;
+  color: #e0e0e0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Search container styling */
 .search-container {
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 15px;
 }
 
+/* Search icon styling */
 .search-icon {
-  font-size: 1.5em;
+  font-size: 1.8em;
   cursor: pointer;
-  margin-right: 10px;
+  color: #ffffff;
+  transition: color 0.3s ease;
 }
 
+.search-icon:hover {
+  color: #ffcc00; /* Highlight color */
+}
+
+/* Search form styling */
 .search-form {
   display: flex;
-  margin-left: 10px;
-  margin-right: 5px;
-}
+  margin-left: 12px;
+} 
 
 .search-form input {
-  padding: 10px;
+  padding: 10px 14px;
   font-size: 1em;
-  margin-right: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   border-radius: 4px;
+  background: #1e1e2f;
+  color: #e0e0e0;
+  transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+  border-color: #ffcc00; /* Highlight for input */
+  outline: none;
 }
 
 .search-form button {
-  padding: 10px;
+  padding: 10px 18px;
   font-size: 1em;
+  background-color: #ffcc00;
+  color: #1e1e2f;
   border: none;
-  background-color: #007bff;
-  color: white;
   border-radius: 4px;
   cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.search-form button:hover {
+  background-color: #ffaa00;
+  transform: scale(1.05);
+}
+
+/* Weather info container styling */
 .weather-info-container {
-  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  margin-top: 60px;
-}
-
-.city-name {
-  font-size: 1.5em;
-  margin-top: 20px;
-}
-
-.weather-info {
+  justify-content: center;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  margin-top: 120px; /* Adjust for fixed taskbar */
+  background: #2a2a40;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   text-align: center;
-  margin-top: 20px;
+  position: relative;
+  color: #ffffff;
 }
 
-.temperature {
-  margin-top: 10px;
+/* City name styling */
+.city-name {
   font-size: 3em;
   font-weight: bold;
+  color: #ffcc00;
+  margin-bottom: 15px;
 }
 
+/* Weather info styling */
+.weather-info {
+  margin-top: 15px;
+}
+
+/* Temperature styling */
+.temperature {
+  font-size: 4.5em;
+  font-weight: bold;
+  color: #eae4fa; /* Vibrant orange for temperature */
+  margin: 15px 0;
+}
+
+/* Weather icon styling */
+.weather-icon {
+  width: 100px;
+  height: 100px;
+  margin: 30px 0; /* Balanced spacing for the icon */
+  margin-left: 50px;
+  display: block;
+  position: relative;
+}
+
+/* Description styling */
 .description {
-  font-size: 1.2em;
+  font-size: 1.4em;
+  color: #e0e0e0;
+  margin-top: 15px;
+}
+
+/* Add to favorites button styling */
+button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  background: linear-gradient(to right, #ff9900, #ffcc00);
+  color: #1e1e2f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ffaa00, #ffee00);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weather-info-container {
+    margin-top: 140px;
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .city-name {
+    font-size: 2.5em;
+  }
+
+  .temperature {
+    font-size: 3.5em;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 1em;
+  }
+}
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: black;
+
+}
+
+.suggestion-item:hover {
+  background-color: #080808;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
 }

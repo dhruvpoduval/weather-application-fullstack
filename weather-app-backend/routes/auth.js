@@ -1,5 +1,3 @@
- 
-// routes/auth.js
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -7,6 +5,19 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const auth = require('../middleware/authMiddleware');
+
+// @route    GET api/auth/verify
+// @desc     Verify token validity
+// @access   Private
+router.get('/verify', auth, async (req, res) => {
+  try {
+    // If middleware passes, token is valid
+    res.json({ valid: true });
+  } catch (err) {
+    console.error(err.message);
+    res.status(401).json({ valid: false });
+  }
+});
 
 // @route    POST api/auth/register
 // @desc     Register user
@@ -40,9 +51,7 @@ router.post(
       });
 
       const salt = await bcrypt.genSalt(10);
-
       user.password = await bcrypt.hash(password, salt);
-
       await user.save();
 
       const payload = {
@@ -54,7 +63,7 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: 360000 },
+        { expiresIn: '24h' }, // Set token to expire in 24 hours
         (err, token) => {
           if (err) throw err;
           res.json({ token });
@@ -106,7 +115,7 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: 360000 },
+        { expiresIn: '24h' }, // Set token to expire in 24 hours
         (err, token) => {
           if (err) throw err;
           res.json({ token });
@@ -119,8 +128,8 @@ router.post(
   }
 );
 
-// @route    GET api/auth
-// @desc     Get user by token  
+// @route    GET api/auth/profile
+// @desc     Get user profile
 // @access   Private
 router.get('/profile', auth, async (req, res) => {
   try {
@@ -131,5 +140,5 @@ router.get('/profile', auth, async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-//Could potentially be used to view profile and stuff.
+
 module.exports = router;

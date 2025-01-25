@@ -1,37 +1,124 @@
-/* src/components/Profile.css */
+/* General container styling */
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 20px;
-    width: 50%;
-    margin: 0 auto;
-  }
-  
-  .profile-container h1 {
-    margin-bottom: 20px;
-  }
-  
-  .profile-container p {
-    margin: 10px 0;
-  }
-  
-  .profile-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  .profile-container button:hover {
-    background-color: #0056b3;
-  }
-  
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Heading styling */
+.profile-container h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styling for user information section */
+.profile-container p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.profile-container strong {
+  color: #333;
+}
+
+/* Form styling */
+.profile-container form {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input styling */
+.profile-container label {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.profile-container input[type="password"],
+.profile-container select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.profile-container input[type="password"]:focus,
+.profile-container select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+.profile-container button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Change password section styling */
+.profile-container .change-password-section {
+  margin: 1rem 0;
+}
+
+/* Toggle button styling */
+.profile-container .toggle-button {
+  display: block;
+  margin: 1rem 0;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-container .toggle-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Loading text styling */
+.profile-container .loading-text {
+  text-align: center;
+  color: #777;
+}
+
+/* Logout button styling */
+.profile-container .logout-button {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-container .logout-button:hover {
+  background-color: #c82333;
+}
